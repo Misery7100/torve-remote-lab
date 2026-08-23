@@ -31,3 +31,7 @@ def vowel_count(text: str) -> int:
 def digit_count(text: str) -> int:
     """Count digits — a second operator hotfix, landing under T-0026."""
     return sum(1 for ch in text if ch.isdigit())
+
+
+def char_count(text: str) -> int:
+    return sum(1 for ch in text if not ch.isspace())
