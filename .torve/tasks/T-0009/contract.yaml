@@ -1,0 +1,12 @@
+# Minted by the runner at gated — review follows execution.
+id: T-0009
+role: review
+intent: "Review pull request #14 at bf29ac260d80 \u2014 no task contract, degraded\
+  \ input."
+targets:
+- PR-14
+decisions: []
+budget:
+  iterations: 1
+tier: reviewer
+schema_version: 1

@@ -13,7 +13,7 @@ tracker:
   token_env: GITHUB_TOKEN
   notify: Misery7100         # paged on interrupt-class escalations (D-6.4)
 review:
-  "on": [task_gated]
+  "on": [task_gated, pr_opened, pr_synchronized]
 tiers:
   planner: {adapter: fake}
   executor:
