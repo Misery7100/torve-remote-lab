@@ -35,3 +35,7 @@ def digit_count(text: str) -> int:
 
 def char_count(text: str) -> int:
     return sum(1 for ch in text if not ch.isspace())
+
+
+def initials(text: str) -> str:
+    return "".join(word[0].upper() for word in text.split())
