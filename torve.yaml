@@ -3,6 +3,7 @@ runtime:
   network: host              # this host's egress runs through a local proxy
 promotion:
   require_ci: true
+  auto_merge: true           # the D-6.2 opt-in — the tick's lane leg runs here
 scm:
   open_pr: true
   repo: Misery7100/torve-remote-lab
@@ -12,6 +13,7 @@ tracker:
   repo: Misery7100/torve-remote-lab
   token_env: GITHUB_TOKEN
   notify: Misery7100         # paged on interrupt-class escalations (D-6.4)
+  commanders: [Misery7100]   # the only login whose /torve commands apply
 review:
   "on": [task_gated, pr_opened, pr_synchronized]
 tiers:

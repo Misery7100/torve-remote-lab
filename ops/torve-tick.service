@@ -1,0 +1,13 @@
+# The standing loop's cadence (RFC 0019): the environment delivers it,
+# the engine holds no daemon. Adjust the two paths, then:
+#   cp ops/torve-tick.* ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now torve-tick.timer
+[Unit]
+Description=torve tick — one bounded pass of the standing loop
+
+[Service]
+Type=oneshot
+# The engine checkout (has the uv environment) and the lab checkout.
+WorkingDirectory=%h/GitLibrary/Morze/torve
+ExecStart=/bin/sh -c 'set -a; . ./.env; set +a; exec uv run torve tick --root %h/torve-remote-lab'
