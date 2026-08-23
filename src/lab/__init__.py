@@ -4,3 +4,7 @@ def greet() -> str:
 
 def count_words(text: str) -> int:
     return len(text.split())
+
+
+def reverse_words(text: str) -> str:
+    return " ".join(reversed(text.split()))

@@ -1,0 +1,16 @@
+schema_version: 1
+id: T-0010
+role: implement
+intent: >-
+  Add a reverse_words(text) function to src/lab/ returning the words of
+  the text in reverse order joined by single spaces, with unittest
+  coverage under tests/. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
