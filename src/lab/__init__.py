@@ -39,3 +39,9 @@ def char_count(text: str) -> int:
 
 def initials(text: str) -> str:
     return "".join(word[0].upper() for word in text.split())
+
+
+def is_pangram(text: str) -> bool:
+    """Return True when text uses every letter of the English alphabet at least once."""
+    present = set(ch for ch in text.lower() if ch.isalpha())
+    return present >= set("abcdefghijklmnopqrstuvwxyz")
