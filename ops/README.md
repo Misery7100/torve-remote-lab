@@ -21,3 +21,28 @@ enabled flag. Watch it through the telemetry: every tick appends one
 `tick` engine event; honest noops are the heartbeat, silence means the
 scheduler is dead, a repeating pause reason means the escalation queue
 wants you.
+
+# The durable run store
+
+Real runs take a postgres store (RFC 0003, D-3.6); this lab's is a
+local container with a named volume, so the run records survive both
+the container and the machine's reboots:
+
+    docker volume create torve-lab-pg-data
+    docker run -d --name torve-lab-pg --restart unless-stopped \
+      -e POSTGRES_PASSWORD=<generate one> \
+      -e POSTGRES_USER=torve -e POSTGRES_DB=torve_lab \
+      -v torve-lab-pg-data:/var/lib/postgresql/data \
+      -p 127.0.0.1:15433:5432 postgres:16-alpine
+
+The DSN lives only in the engine checkout's `.env` as `TORVE_PG_DSN`
+(`postgresql://torve:<password>@127.0.0.1:15433/torve_lab`) — the
+config here names the variable, never the value. First-time setup and
+every forze upgrade end the same way:
+
+    torve migrate --all --root <this repo>
+    torve doctor --root <this repo>
+
+`torve doctor` is the whole preflight: it reds with an instruction when
+the DSN is unset, the database does not answer, or a substrate step is
+pending.
