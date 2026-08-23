@@ -21,3 +21,8 @@ def word_lengths(text: str) -> list:
 
 def longest_word(text: str) -> str:
     return max(text.split(), key=len) if text.split() else ""
+
+
+def vowel_count(text: str) -> int:
+    """Count vowels — an operator hotfix landing mid-flight."""
+    return sum(1 for ch in text.lower() if ch in "aeiou")
