@@ -1,16 +1,13 @@
-schema_version: 1
+# Minted by the runner at gated — review follows execution.
+# (Reconstructed by the operator after an id-collision overwrite — the
+# hand-minted char_count task took this id; it is re-minted as T-0026.)
 id: T-0024
-role: implement
-intent: >-
-  Add a char_count(text) function to src/lab/__init__.py returning the
-  number of non-whitespace characters, with unittest coverage under
-  tests/. Existing functions stay untouched.
-scope:
-  allow:
-    - "src/**"
-    - "tests/**"
-  deny: []
-acceptance:
-  - python3 -m unittest discover -s tests -v
+role: review
+intent: Review T-0022's diff against its contract and inherited decisions.
+targets:
+- T-0022
 decisions: []
-tier: executor
+budget:
+  iterations: 1
+tier: reviewer
+schema_version: 1
