@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lab import count_words, reverse_words
+from lab import count_words, reverse_words, is_palindrome
 
 
 class CountWordsTest(unittest.TestCase):
@@ -45,6 +45,29 @@ class ReverseWordsTest(unittest.TestCase):
 
     def test_three_words(self):
         self.assertEqual(reverse_words("the quick brown fox"), "fox brown quick the")
+
+
+class IsPalindromeTest(unittest.TestCase):
+    def test_simple_palindrome(self):
+        self.assertTrue(is_palindrome("radar"))
+
+    def test_ignores_case(self):
+        self.assertTrue(is_palindrome("Radar"))
+        self.assertTrue(is_palindrome("A man a plan a canal Panama"))
+
+    def test_ignores_spaces(self):
+        self.assertTrue(is_palindrome("never odd or even"))
+        self.assertTrue(is_palindrome("nurses run"))
+
+    def test_non_palindrome(self):
+        self.assertFalse(is_palindrome("hello"))
+        self.assertFalse(is_palindrome("lab"))
+
+    def test_empty_string(self):
+        self.assertTrue(is_palindrome(""))
+
+    def test_single_character(self):
+        self.assertTrue(is_palindrome("a"))
 
 
 if __name__ == "__main__":

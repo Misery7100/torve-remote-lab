@@ -8,3 +8,8 @@ def count_words(text: str) -> int:
 
 def reverse_words(text: str) -> str:
     return " ".join(reversed(text.split()))
+
+
+def is_palindrome(text: str) -> bool:
+    normalized = "".join(ch for ch in text.lower() if ch != " ")
+    return normalized == normalized[::-1]
