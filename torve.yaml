@@ -1,4 +1,7 @@
 schema_version: 1
+runtime:
+  image: torve-agent:docker
+  docker: socket
 scm:
   open_pr: true
   repo: Misery7100/torve-remote-lab

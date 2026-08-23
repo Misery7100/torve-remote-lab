@@ -1,0 +1,14 @@
+schema_version: 1
+id: T-0002
+role: implement
+intent: >-
+  The socket-mode replay: the attempt and the gates sandbox alike hold the
+  host daemon's socket, and the acceptance battery proves it by asking the
+  daemon for its version from inside the gates sandbox.
+scope:
+  allow: []
+  deny: []
+acceptance:
+  - docker version
+decisions: []
+tier: executor
