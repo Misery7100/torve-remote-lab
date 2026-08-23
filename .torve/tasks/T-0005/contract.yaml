@@ -1,0 +1,18 @@
+schema_version: 1
+id: T-0005
+role: implement
+intent: >-
+  Add a word-count utility to the lab package: a count_words(text)
+  function in src/lab/ returning the number of whitespace-separated
+  words, with unittest coverage under tests/ that includes the empty
+  string and repeated-whitespace cases. The existing greet() stays
+  untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
