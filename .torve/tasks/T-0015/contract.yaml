@@ -1,0 +1,14 @@
+# Minted by the runner at gated — review follows execution.
+# (Reconstructed by the operator after an id-collision overwrite: the
+# hand re-mint of T-0014's intent took this id before noticing the
+# runner had already minted it for the review; the re-mint is T-0016.)
+id: T-0015
+role: review
+intent: Review T-0014's diff against its contract and inherited decisions.
+targets:
+- T-0014
+decisions: []
+budget:
+  iterations: 1
+tier: reviewer
+schema_version: 1
