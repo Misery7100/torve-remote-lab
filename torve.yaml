@@ -4,6 +4,7 @@ runtime:
 promotion:
   require_ci: true
   auto_merge: true           # the D-6.2 opt-in — the tick's lane leg runs here
+  approvals: 1               # a landing needs one commander approval of the tip
 scm:
   open_pr: true
   repo: Misery7100/torve-remote-lab
