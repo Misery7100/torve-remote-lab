@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lab import count_words, reverse_words, is_palindrome
+from lab import count_words, reverse_words, is_palindrome, word_lengths
 
 
 class CountWordsTest(unittest.TestCase):
@@ -68,6 +68,29 @@ class IsPalindromeTest(unittest.TestCase):
 
     def test_single_character(self):
         self.assertTrue(is_palindrome("a"))
+
+
+class WordLengthsTest(unittest.TestCase):
+    def test_empty_string(self):
+        self.assertEqual(word_lengths(""), [])
+
+    def test_whitespace_only(self):
+        self.assertEqual(word_lengths("   \t  "), [])
+
+    def test_single_word(self):
+        self.assertEqual(word_lengths("hello"), [5])
+
+    def test_multiple_words(self):
+        self.assertEqual(word_lengths("hello world"), [5, 5])
+
+    def test_varied_lengths(self):
+        self.assertEqual(word_lengths("the quick brown fox"), [3, 5, 5, 3])
+
+    def test_repeated_whitespace(self):
+        self.assertEqual(word_lengths("  one   two  three  "), [3, 3, 5])
+
+    def test_tabs_and_newlines(self):
+        self.assertEqual(word_lengths("one\t\ttwo\n three"), [3, 3, 5])
 
 
 if __name__ == "__main__":
