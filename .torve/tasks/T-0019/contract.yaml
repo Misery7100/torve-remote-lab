@@ -1,0 +1,17 @@
+schema_version: 1
+id: T-0019
+role: implement
+intent: >-
+  Add a snake_case(text) function in a new module src/lab/casing.py
+  converting spaced words to lower snake_case, with unittest coverage in
+  a new tests/test_casing.py. Existing files stay untouched.
+depends_on: [T-0018]
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
