@@ -12,7 +12,7 @@ tracker:
   repo: Misery7100/torve-remote-lab
   token_env: GITHUB_TOKEN
 review:
-  on: [task_gated]
+  "on": [task_gated]
 tiers:
   planner: {adapter: fake}
   executor:
