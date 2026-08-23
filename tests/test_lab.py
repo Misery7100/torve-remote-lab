@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lab import count_words, reverse_words, is_palindrome, word_lengths
+from lab import count_words, reverse_words, is_palindrome, word_lengths, longest_word
 
 
 class CountWordsTest(unittest.TestCase):
@@ -91,6 +91,29 @@ class WordLengthsTest(unittest.TestCase):
 
     def test_tabs_and_newlines(self):
         self.assertEqual(word_lengths("one\t\ttwo\n three"), [3, 3, 5])
+
+
+class LongestWordTest(unittest.TestCase):
+    def test_empty_string(self):
+        self.assertEqual(longest_word(""), "")
+
+    def test_whitespace_only(self):
+        self.assertEqual(longest_word("   \t  "), "")
+
+    def test_single_word(self):
+        self.assertEqual(longest_word("hello"), "hello")
+
+    def test_varied_lengths(self):
+        self.assertEqual(longest_word("the quick brown fox"), "quick")
+
+    def test_returns_first_on_ties(self):
+        self.assertEqual(longest_word("abc def ghi"), "abc")
+
+    def test_repeated_whitespace(self):
+        self.assertEqual(longest_word("  one   two  three  "), "three")
+
+    def test_tabs_and_newlines(self):
+        self.assertEqual(longest_word("hello\t\tworld\n"), "hello")
 
 
 if __name__ == "__main__":

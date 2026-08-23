@@ -17,3 +17,7 @@ def is_palindrome(text: str) -> bool:
 
 def word_lengths(text: str) -> list:
     return [len(word) for word in text.split()]
+
+
+def longest_word(text: str) -> str:
+    return max(text.split(), key=len) if text.split() else ""
