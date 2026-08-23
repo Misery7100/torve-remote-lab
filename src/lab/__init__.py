@@ -26,3 +26,7 @@ def longest_word(text: str) -> str:
 def vowel_count(text: str) -> int:
     """Count vowels — an operator hotfix landing mid-flight."""
     return sum(1 for ch in text.lower() if ch in "aeiou")
+
+
+def char_count(text: str) -> int:
+    return len("".join(text.split()))
