@@ -1,8 +1,36 @@
+# Gate manifest for this repository (RFC 0002, D-2.5: manifests live in the
+# consuming repository). The second consuming repository: torve gates as a
+# pip-installed CI dependency, applied to human and agent work alike.
 schema_version: 1
 scope:
   allow: []
   deny: []
 gates:
+  - name: scope
+    run: "@scope"
+    state: blocking
+    origin: structural
+    added: 2026-08-23
+  - name: secrets
+    run: "@secrets"
+    state: blocking
+    origin: structural
+    added: 2026-08-23
+  - name: no-test-tampering
+    run: "@no-test-tampering"
+    state: blocking
+    origin: structural
+    added: 2026-08-23
+  - name: decisions-reported
+    run: "@decisions-reported"
+    state: blocking
+    origin: structural
+    added: 2026-08-23
+  - name: self-audit
+    run: "@self-audit"
+    state: blocking
+    origin: structural
+    added: 2026-08-23
   - name: acceptance
     run: "@acceptance"
     state: blocking

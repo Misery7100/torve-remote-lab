@@ -1,0 +1,23 @@
+name: gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # gates diff against git merge-base
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      # The pip-installed CI dependency (torve RFC 0002): the wheel is a
+      # committed, reviewed artefact — vendored the way sandbox definitions
+      # and skills are, updated by a diff someone reads.
+      - run: pip install vendor/torve-*.whl
+      # Task branches (torve/T-nnnn) auto-discover their contract.
+      - run: torve gates run --base origin/main
