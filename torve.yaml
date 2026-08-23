@@ -1,0 +1,5 @@
+schema_version: 1
+scm:
+  open_pr: true
+  repo: Misery7100/torve-remote-lab
+  token_env: GITHUB_TOKEN

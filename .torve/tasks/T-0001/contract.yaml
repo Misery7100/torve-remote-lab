@@ -1,0 +1,13 @@
+schema_version: 1
+id: T-0001
+role: implement
+intent: >-
+  The first credentialed landing: a scripted change lands through the
+  engine, is pushed to the task's own branch with full provenance
+  trailers, and opens as a pull request composed from records.
+scope:
+  allow: []
+  deny: []
+acceptance: []
+decisions: []
+tier: executor
