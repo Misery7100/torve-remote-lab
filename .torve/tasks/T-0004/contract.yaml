@@ -1,0 +1,13 @@
+schema_version: 1
+id: T-0004
+role: implement
+intent: >-
+  The ci-gated landing: this candidate's branch is judged by the remote's
+  Actions run before the lane fast-forwards it — green_on_current_head as
+  a live requirement, not a table row.
+scope:
+  allow: []
+  deny: []
+acceptance: []
+decisions: []
+tier: executor
