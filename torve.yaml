@@ -11,6 +11,7 @@ tracker:
   kind: github-issues
   repo: Misery7100/torve-remote-lab
   token_env: GITHUB_TOKEN
+  notify: Misery7100         # paged on interrupt-class escalations (D-6.4)
 review:
   "on": [task_gated]
 tiers:
