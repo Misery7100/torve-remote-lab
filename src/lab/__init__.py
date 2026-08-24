@@ -33,6 +33,20 @@ def digit_count(text: str) -> int:
     return sum(1 for ch in text if ch.isdigit())
 
 
+def most_common_word(text: str) -> str:
+    """Return the most frequent word, lower-cased; ties go to first appearance."""
+    words = text.split()
+    if not words:
+        return ""
+    counts = {}
+    first = {}
+    for index, word in enumerate(words):
+        lowered = word.lower()
+        counts[lowered] = counts.get(lowered, 0) + 1
+        first.setdefault(lowered, index)
+    return max(counts, key=lambda w: (counts[w], -first[w]))
+
+
 def char_count(text: str) -> int:
     return sum(1 for ch in text if not ch.isspace())
 
