@@ -1,3 +1,13 @@
+def running_total(numbers: list) -> list:
+    """Return the list of cumulative sums; empty list for empty input."""
+    totals = []
+    running = 0
+    for number in numbers:
+        running += number
+        totals.append(running)
+    return totals
+
+
 def greet() -> str:
     return "hello from the lab"
 
