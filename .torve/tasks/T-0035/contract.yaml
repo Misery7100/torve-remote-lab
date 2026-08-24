@@ -1,0 +1,17 @@
+schema_version: 1
+id: T-0035
+role: implement
+intent: >-
+  Add a most_common_word(text) function to src/lab/__init__.py returning
+  the most frequent whitespace-separated word lower-cased, ties broken
+  by first appearance and empty text returning an empty string, with
+  unittest coverage under tests/. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

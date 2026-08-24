@@ -1,0 +1,18 @@
+schema_version: 1
+id: T-0036
+role: implement
+intent: >-
+  Add a caesar_cipher(text, shift) function to src/lab/__init__.py
+  rotating ASCII letters by the given shift while preserving case and
+  leaving every other character untouched, negative shifts included,
+  with unittest coverage under tests/. Existing functions stay
+  untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
