@@ -13,7 +13,7 @@ The engine holds no daemon: cadence is delivered by the environment
 
 **cron**, one line, same shape:
 
-    */30 * * * * cd $HOME/GitLibrary/Morze/torve && sh -c 'set -a; . ./.env; set +a; uv run torve tick --root $HOME/torve-remote-lab' >> $HOME/.local/state/torve-tick.log 2>&1
+    */10 * * * * cd $HOME/GitLibrary/Morze/torve && sh -c 'set -a; . ./.env; set +a; uv run torve tick --root $HOME/torve-remote-lab' >> $HOME/.local/state/torve-tick.log 2>&1
 
 Overlap is safe either way: a tick that finds the lock held exits as a
 recorded no-op. Turning the loop off is unscheduling it — there is no
