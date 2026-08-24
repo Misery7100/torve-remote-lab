@@ -20,6 +20,9 @@ tracker:
   commanders: [Misery7100]   # the only login whose /torve commands apply
 review:
   "on": [task_gated, pr_opened, pr_synchronized]
+  feedback_from:             # the revision loop's allow-list (0005 §4a)
+    - "coderabbitai[bot]"
+    - Misery7100
 tiers:
   planner: {adapter: fake}
   executor:
