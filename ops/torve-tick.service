@@ -10,4 +10,4 @@ Description=torve tick — one bounded pass of the standing loop
 Type=oneshot
 # The engine checkout (has the uv environment) and the lab checkout.
 WorkingDirectory=%h/GitLibrary/Morze/torve
-ExecStart=/bin/sh -c 'set -a; . ./.env; set +a; exec uv run torve tick --root %h/torve-remote-lab'
+ExecStart=/bin/sh -c 'set -a; . ./.env; set +a; exec %h/.cargo/bin/uv run torve tick --root %h/GitLibrary/Misery7100/torve-remote-lab'
