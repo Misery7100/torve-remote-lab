@@ -66,3 +66,18 @@ def remove_punctuation(text: str) -> str:
     import string
 
     return "".join(ch for ch in text if ch not in string.punctuation)
+
+
+def caesar_cipher(text: str, shift: int) -> str:
+    """Rotate ASCII letters by shift, preserving case and leaving others untouched."""
+    import string
+
+    result = []
+    for ch in text:
+        if ch in string.ascii_lowercase:
+            result.append(chr((ord(ch) - ord("a") + shift) % 26 + ord("a")))
+        elif ch in string.ascii_uppercase:
+            result.append(chr((ord(ch) - ord("A") + shift) % 26 + ord("A")))
+        else:
+            result.append(ch)
+    return "".join(result)
