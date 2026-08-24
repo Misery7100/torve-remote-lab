@@ -45,3 +45,10 @@ def is_pangram(text: str) -> bool:
     """Return True when text uses every letter of the English alphabet at least once."""
     present = set(ch for ch in text.lower() if ch.isalpha())
     return present >= set("abcdefghijklmnopqrstuvwxyz")
+
+
+def remove_punctuation(text: str) -> str:
+    """Return text with all ASCII punctuation characters removed."""
+    import string
+
+    return "".join(ch for ch in text if ch not in string.punctuation)
