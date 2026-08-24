@@ -66,3 +66,15 @@ def remove_punctuation(text: str) -> str:
     import string
 
     return "".join(ch for ch in text if ch not in string.punctuation)
+
+
+def is_isogram(text: str) -> bool:
+    """Return True when no letter repeats case-insensitively, ignoring non-letters."""
+    seen = set()
+    for ch in text:
+        if ch.isalpha():
+            lowered = ch.lower()
+            if lowered in seen:
+                return False
+            seen.add(lowered)
+    return True
