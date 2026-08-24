@@ -81,3 +81,14 @@ def caesar_cipher(text: str, shift: int) -> str:
         else:
             result.append(ch)
     return "".join(result)
+
+
+def is_isogram(text: str) -> bool:
+    """Return True when no letter repeats case-insensitively, ignoring non-letters."""
+    seen = set()
+    for ch in text.lower():
+        if ch.isalpha():
+            if ch in seen:
+                return False
+            seen.add(ch)
+    return True
