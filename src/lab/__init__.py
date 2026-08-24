@@ -122,3 +122,20 @@ def hamming_distance(a: str, b: str) -> int:
     if len(a) != len(b):
         raise ValueError("strings must be of equal length")
     return sum(1 for x, y in zip(a, b) if x != y)
+
+
+def collatz_steps(n: int) -> int:
+    """Return the number of Collatz steps required to reach 1 from n.
+
+    Raises ValueError if n is not a positive integer.
+    """
+    if n < 1:
+        raise ValueError("n must be a positive integer")
+    steps = 0
+    while n != 1:
+        if n % 2 == 0:
+            n //= 2
+        else:
+            n = 3 * n + 1
+        steps += 1
+    return steps
