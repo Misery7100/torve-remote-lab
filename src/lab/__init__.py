@@ -115,3 +115,10 @@ def anagrams(word: str, candidates: list) -> list:
         for candidate in candidates
         if candidate.lower() != word.lower() and sorted(candidate.lower()) == target
     ]
+
+
+def hamming_distance(a: str, b: str) -> int:
+    """Return the number of differing positions between two equal-length strings."""
+    if len(a) != len(b):
+        raise ValueError("strings must be of equal length")
+    return sum(1 for x, y in zip(a, b) if x != y)
