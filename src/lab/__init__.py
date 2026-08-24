@@ -122,3 +122,33 @@ def hamming_distance(a: str, b: str) -> int:
     if len(a) != len(b):
         raise ValueError("strings must be of equal length")
     return sum(1 for x, y in zip(a, b) if x != y)
+
+
+def roman_numeral(n: int) -> str:
+    """Return the Roman numeral string for integer n in the range 1..3999.
+
+    Raises ValueError when n is not an integer or is outside that range.
+    """
+    if not isinstance(n, int) or not 1 <= n <= 3999:
+        raise ValueError("n out of range 1..3999 for Roman numeral conversion")
+    numerals = [
+        (1000, "M"),
+        (900, "CM"),
+        (500, "D"),
+        (400, "CD"),
+        (100, "C"),
+        (90, "XC"),
+        (50, "L"),
+        (40, "XL"),
+        (10, "X"),
+        (9, "IX"),
+        (5, "V"),
+        (4, "IV"),
+        (1, "I"),
+    ]
+    result = []
+    for value, symbol in numerals:
+        while n >= value:
+            result.append(symbol)
+            n -= value
+    return "".join(result)
