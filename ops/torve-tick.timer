@@ -1,8 +1,8 @@
 [Unit]
-Description=torve tick every 30 minutes
+Description=torve tick every 10 minutes
 
 [Timer]
-OnCalendar=*:0/30
+OnCalendar=*:0/10
 Persistent=true
 # RandomizedDelaySec keeps two machines from firing in lockstep; the
 # tick lock makes an overlap a recorded no-op either way.
