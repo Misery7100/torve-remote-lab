@@ -102,3 +102,10 @@ def is_isogram(text: str) -> bool:
                 return False
             seen.add(ch)
     return True
+
+
+def hamming_distance(a: str, b: str) -> int:
+    """Return the number of differing positions between two equal-length strings."""
+    if len(a) != len(b):
+        raise ValueError("strings must be of equal length")
+    return sum(1 for x, y in zip(a, b) if x != y)
