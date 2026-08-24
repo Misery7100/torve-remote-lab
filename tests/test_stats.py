@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lab.stats import median
+from lab.stats import median, variance
 
 
 class MedianTest(unittest.TestCase):
@@ -26,6 +26,27 @@ class MedianTest(unittest.TestCase):
 
     def test_floats(self):
         self.assertEqual(median([1.5, 2.5]), 2.0)
+
+
+class VarianceTest(unittest.TestCase):
+    def test_empty_raises_valueerror(self):
+        with self.assertRaises(ValueError):
+            variance([])
+
+    def test_single_element(self):
+        self.assertEqual(variance([5]), 0)
+
+    def test_identical_values(self):
+        self.assertEqual(variance([3, 3, 3, 3]), 0)
+
+    def test_two_elements(self):
+        self.assertEqual(variance([2, 4]), 1)
+
+    def test_known_population(self):
+        self.assertEqual(variance([1, 2, 3, 4, 5]), 2)
+
+    def test_negative_and_positive(self):
+        self.assertEqual(variance([-2, 2]), 4)
 
 
 if __name__ == "__main__":
