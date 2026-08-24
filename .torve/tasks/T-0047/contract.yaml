@@ -1,0 +1,15 @@
+schema_version: 1
+id: T-0047
+role: implement
+intent: >-
+  Add a variance(numbers) function to src/lab/stats.py returning the population variance, ValueError on empty input, with unittest coverage under tests/. Existing functions stay untouched.
+depends_on: [T-0045]
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

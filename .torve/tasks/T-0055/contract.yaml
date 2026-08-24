@@ -1,0 +1,14 @@
+schema_version: 1
+id: T-0055
+role: implement
+intent: >-
+  Add an anagrams(word, candidates) function to src/lab/__init__.py returning the candidates that are anagrams of the word case-insensitively, a word never counting as its own anagram, with unittest coverage under tests/. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

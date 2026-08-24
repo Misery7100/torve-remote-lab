@@ -1,0 +1,14 @@
+schema_version: 1
+id: T-0056
+role: implement
+intent: >-
+  Add a collatz_steps(n) function to src/lab/__init__.py returning how many Collatz steps reach 1 from a positive integer, raising ValueError for n < 1, with unittest coverage under tests/. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

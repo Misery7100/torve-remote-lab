@@ -1,0 +1,14 @@
+schema_version: 1
+id: T-0049
+role: implement
+intent: >-
+  Add a roman_numeral(n) function to src/lab/__init__.py converting an integer 1..3999 to its Roman numeral string, raising ValueError outside that range, with unittest coverage under tests/. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/**"
+    - "tests/**"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
