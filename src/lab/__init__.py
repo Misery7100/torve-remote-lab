@@ -102,3 +102,16 @@ def is_isogram(text: str) -> bool:
                 return False
             seen.add(ch)
     return True
+
+
+def anagrams(word: str, candidates: list) -> list:
+    """Return candidates that are anagrams of word, case-insensitively.
+
+    A word never counts as its own anagram.
+    """
+    target = sorted(word.lower())
+    return [
+        candidate
+        for candidate in candidates
+        if candidate.lower() != word.lower() and sorted(candidate.lower()) == target
+    ]
