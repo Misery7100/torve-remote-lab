@@ -115,3 +115,16 @@ def anagrams(word: str, candidates: list) -> list:
         for candidate in candidates
         if candidate.lower() != word.lower() and sorted(candidate.lower()) == target
     ]
+
+
+def balanced_brackets(text: str) -> bool:
+    """Return True when every (), [], {} pair in text nests and closes correctly, ignoring other characters."""
+    pairs = {")": "(", "]": "[", "}": "{"}
+    stack = []
+    for ch in text:
+        if ch in pairs.values():
+            stack.append(ch)
+        elif ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+    return not stack
