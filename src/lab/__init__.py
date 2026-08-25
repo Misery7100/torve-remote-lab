@@ -225,3 +225,27 @@ def rle_encode(text: str) -> str:
             count = 1
     result.append(f"{prev}{count}")
     return "".join(result)
+
+
+def rle_decode(text: str) -> str:
+    """Run-length decode a string of character-count pairs like a3b1 back to raw text.
+
+    Returns an empty string for empty input. Raises ValueError when the text
+    contains a malformed pair (a character not followed by a count).
+    """
+    if not text:
+        return ""
+    result = []
+    index = 0
+    while index < len(text):
+        char = text[index]
+        index += 1
+        count_start = index
+        while index < len(text) and text[index].isdigit():
+            index += 1
+        if count_start == index:
+            raise ValueError(f"malformed run-length encoded text: {text!r}")
+        result.append(char * int(text[count_start:index]))
+    if not result:
+        raise ValueError(f"malformed run-length encoded text: {text!r}")
+    return "".join(result)
