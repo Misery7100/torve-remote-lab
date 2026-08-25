@@ -194,3 +194,21 @@ def luhn_valid(digits: str) -> bool:
                 value -= 9
         total += value
     return total % 10 == 0
+
+
+def rle_encode(text: str) -> str:
+    """Run-length encode a string as character-count pairs like a3b1; empty for empty input."""
+    if not text:
+        return ""
+    result = []
+    prev = text[0]
+    count = 1
+    for ch in text[1:]:
+        if ch == prev:
+            count += 1
+        else:
+            result.append(f"{prev}{count}")
+            prev = ch
+            count = 1
+    result.append(f"{prev}{count}")
+    return "".join(result)
