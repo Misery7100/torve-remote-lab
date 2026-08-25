@@ -1,0 +1,26 @@
+schema_version: 1
+id: T-0108
+role: implement
+intent: >-
+  Fix the backwards-clock defect in src/lab/ratelimit.py flagged by
+  review on the previous landing: _refill currently records a
+  regressed clock reading into _last, so when the clock later
+  recovers, the elapsed span covers time that never passed and the
+  bucket mints phantom tokens. A clock reading earlier than _last
+  must leave _last untouched — refill only ever measures forward
+  motion — and every existing behaviour (continuous fractional
+  refill, the capacity cap, cost validation) stays exactly as it is.
+  Add a regression test to tests/test_ratelimit.py driving the fake
+  clock through drain, regression, and recovery to its original
+  reading, asserting no tokens accrued from the phantom span while
+  genuinely new forward time still refills. Do not modify any other
+  file.
+scope:
+  allow:
+    - "src/lab/ratelimit.py"
+    - "tests/test_ratelimit.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
