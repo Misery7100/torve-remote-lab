@@ -194,3 +194,16 @@ def luhn_valid(digits: str) -> bool:
                 value -= 9
         total += value
     return total % 10 == 0
+
+
+def balanced_brackets(text: str) -> bool:
+    """Return True when every (), [], {} pair in the text nests and closes correctly, ignoring other characters."""
+    pairs = {")": "(", "]": "[", "}": "{"}
+    stack = []
+    for ch in text:
+        if ch in pairs.values():
+            stack.append(ch)
+        elif ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+    return not stack
