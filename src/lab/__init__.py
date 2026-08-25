@@ -152,3 +152,27 @@ def roman_numeral(n: int) -> str:
             result.append(symbol)
             n -= value
     return "".join(result)
+
+
+def from_roman(text: str) -> int:
+    """Return the integer for a Roman numeral string in the range 1..3999.
+
+    Raises ValueError when the string is not a valid canonical Roman numeral
+    in that range.
+    """
+    if not isinstance(text, str):
+        raise ValueError("input must be a string")
+    values = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    total = 0
+    previous = 0
+    for ch in text:
+        if ch not in values:
+            raise ValueError(f"invalid Roman numeral: {text!r}")
+        value = values[ch]
+        total += value
+        if value > previous:
+            total -= 2 * previous
+        previous = value
+    if not 1 <= total <= 3999 or roman_numeral(total) != text:
+        raise ValueError(f"invalid Roman numeral: {text!r}")
+    return total
