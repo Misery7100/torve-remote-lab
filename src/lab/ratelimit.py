@@ -26,8 +26,6 @@ class RateLimiter:
         if elapsed > 0:
             self._tokens = min(self.capacity, self._tokens + elapsed * self.refill_rate)
             self._last = now
-        else:
-            self._last = now
 
     def allow(self, cost: int = 1) -> bool:
         if cost <= 0:

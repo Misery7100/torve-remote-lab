@@ -110,6 +110,21 @@ class BackwardsClockTest(unittest.TestCase):
         clock.time = 15.0
         self.assertTrue(limiter.allow(1))
 
+    def test_regression_and_recovery_accrue_no_phantom_tokens(self):
+        clock = FakeClock(10.0)
+        limiter = RateLimiter(2, 1.0, clock=clock)
+        self.assertTrue(limiter.allow(2))
+        self.assertFalse(limiter.allow())
+        clock.time = 5.0
+        self.assertEqual(limiter.wait_time(1), 1.0)
+        self.assertFalse(limiter.allow())
+        clock.time = 10.0
+        self.assertEqual(limiter.wait_time(1), 1.0)
+        self.assertFalse(limiter.allow())
+        clock.time = 11.0
+        self.assertTrue(limiter.allow(1))
+        self.assertFalse(limiter.allow())
+
 
 class CostValidationTest(unittest.TestCase):
     def test_non_positive_cost_raises_valueerror(self):
