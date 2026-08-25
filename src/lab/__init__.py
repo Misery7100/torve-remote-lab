@@ -152,3 +152,16 @@ def roman_numeral(n: int) -> str:
             result.append(symbol)
             n -= value
     return "".join(result)
+
+
+def balanced_brackets(text: str) -> bool:
+    """Return True when every (), [], {} pair in text nests and closes correctly, ignoring other characters."""
+    pairs = {")": "(", "]": "[", "}": "{"}
+    stack = []
+    for ch in text:
+        if ch in pairs.values():
+            stack.append(ch)
+        elif ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+    return not stack
