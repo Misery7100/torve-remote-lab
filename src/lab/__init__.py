@@ -176,3 +176,16 @@ def from_roman(text: str) -> int:
     if not 1 <= total <= 3999 or roman_numeral(total) != text:
         raise ValueError(f"invalid Roman numeral: {text!r}")
     return total
+
+
+def balanced_brackets(text: str) -> bool:
+    """Return True when every (), [], {} pair in text nests and closes correctly, ignoring other characters."""
+    pairs = {")": "(", "]": "[", "}": "{"}
+    stack = []
+    for ch in text:
+        if ch in pairs.values():
+            stack.append(ch)
+        elif ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+    return not stack
