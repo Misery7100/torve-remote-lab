@@ -1,0 +1,26 @@
+schema_version: 1
+id: T-0096
+role: implement
+intent: >-
+  Create a new module src/lab/ratelimit.py implementing a token-bucket
+  RateLimiter class: constructor takes capacity (int > 0), refill_rate
+  (tokens per second, float > 0), and an injectable clock callable
+  returning seconds (default time.monotonic). allow(cost=1) consumes
+  tokens and returns True/False without blocking; wait_time(cost=1)
+  returns 0.0 when allowed now, else the seconds until enough tokens
+  accrue. Refill is continuous (fractional tokens accrue between
+  calls), the bucket never exceeds capacity, cost > capacity raises
+  ValueError, and a clock that moves backwards must not mint tokens.
+  Stdlib only. Add unittest coverage in a new file
+  tests/test_ratelimit.py using a fake clock — burst-drain, refill
+  over time, cap at capacity, backwards clock, cost validation. Do
+  not modify any existing file.
+scope:
+  allow:
+    - "src/lab/ratelimit.py"
+    - "tests/test_ratelimit.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

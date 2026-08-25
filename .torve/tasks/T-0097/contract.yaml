@@ -1,0 +1,28 @@
+schema_version: 1
+id: T-0097
+role: implement
+intent: >-
+  Create a new module src/lab/csvlite.py with parse_csv(text) ->
+  list[list[str]] and render_csv(rows) -> str implementing RFC
+  4180-style CSV: fields separated by commas, fields containing
+  commas, double quotes, or newlines are quoted with double quotes,
+  and a literal double quote inside a quoted field is escaped by
+  doubling it. parse_csv accepts LF and CRLF line endings, preserves
+  empty fields, treats a trailing newline as row termination (not an
+  extra empty row), and raises ValueError on an unterminated quoted
+  field or on characters after a closing quote that are not a comma
+  or line end. render_csv quotes only when needed and round-trips:
+  parse_csv(render_csv(rows)) == rows for any list of string rows.
+  Stdlib only, without using the csv module. Add unittest coverage in
+  a new file tests/test_csvlite.py — quoted commas, escaped quotes,
+  embedded newlines, CRLF, empty fields, round-trip, and both error
+  cases. Do not modify any existing file.
+scope:
+  allow:
+    - "src/lab/csvlite.py"
+    - "tests/test_csvlite.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

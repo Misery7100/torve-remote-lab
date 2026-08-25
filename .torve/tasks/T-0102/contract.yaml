@@ -1,0 +1,29 @@
+schema_version: 1
+id: T-0102
+role: implement
+intent: >-
+  Create a new module src/lab/lrucache.py with an LRUCache class:
+  constructor takes max_size (int > 0) and an optional default ttl
+  (seconds, float > 0 or None) plus an injectable clock (default
+  time.monotonic). put(key, value, ttl=None) stores with the entry's
+  own ttl overriding the default; get(key, default=None) returns the
+  value, refreshes recency, and treats an expired entry as absent —
+  evicting it lazily; len() counts only unexpired entries; capacity
+  overflow evicts the least recently used unexpired entry; put on an
+  existing key updates value, ttl, and recency. contains(key) checks
+  without refreshing recency. Expired entries must never be returned
+  even when the clock jumps far forward, and eviction order follows
+  get/put recency exactly. Stdlib only. Add unittest coverage in a
+  new file tests/test_lrucache.py using a fake clock — recency
+  eviction order, ttl expiry, per-entry ttl override, len semantics,
+  update-refreshes-recency, and contains not refreshing. Do not
+  modify any existing file.
+scope:
+  allow:
+    - "src/lab/lrucache.py"
+    - "tests/test_lrucache.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

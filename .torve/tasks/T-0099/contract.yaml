@@ -1,0 +1,30 @@
+schema_version: 1
+id: T-0099
+role: implement
+intent: >-
+  Create a new module src/lab/backoff.py with a retry decorator
+  retry(max_attempts=3, base_delay=0.1, max_delay=10.0, retry_on=
+  (Exception,), sleeper=time.sleep, rng=random.random): calls the
+  wrapped function, and on an exception matching retry_on sleeps
+  full-jitter exponential backoff — a uniform draw over [0,
+  min(max_delay, base_delay * 2**(attempt-1))] — then retries, up to
+  max_attempts total calls. An exception outside retry_on propagates
+  immediately; exhausting attempts re-raises the last exception with
+  its original traceback; the return value passes through unchanged;
+  functools.wraps preserves the wrapped function's metadata;
+  max_attempts < 1 raises ValueError at decoration time. The sleeper
+  and rng are injectable for tests and no real sleeping may happen
+  under test. Stdlib only. Add unittest coverage in a new file
+  tests/test_backoff.py — success passthrough, retry-then-succeed,
+  exhaustion re-raise, non-matching exception propagates on the first
+  call, jitter bounded by the cap, and recorded sleep counts. Do not
+  modify any existing file.
+scope:
+  allow:
+    - "src/lab/backoff.py"
+    - "tests/test_backoff.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

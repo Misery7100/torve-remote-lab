@@ -1,0 +1,30 @@
+schema_version: 1
+id: T-0100
+role: implement
+intent: >-
+  Create a new module src/lab/semverlite.py with parse_semver(text)
+  -> (major, minor, patch, prerelease_identifiers_tuple) and
+  compare_semver(a, b) -> -1|0|1 implementing SemVer 2.0.0 precedence
+  without build metadata: versions are MAJOR.MINOR.PATCH with an
+  optional -prerelease of dot-separated identifiers. Numeric
+  identifiers compare numerically and rank below any alphanumeric
+  identifier; alphanumeric identifiers compare as ASCII strings; a
+  shorter prerelease list ranks below a longer one when all preceding
+  identifiers are equal; a version WITH any prerelease ranks below
+  the same core version without one. parse_semver raises ValueError
+  on leading zeros in numeric parts (core or numeric prerelease
+  identifiers), empty identifiers, or malformed input. Stdlib only.
+  Add unittest coverage in a new file tests/test_semverlite.py
+  including the ordering chain from the SemVer spec: 1.0.0-alpha <
+  1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 <
+  1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0, plus parse validation cases.
+  Do not modify any existing file.
+scope:
+  allow:
+    - "src/lab/semverlite.py"
+    - "tests/test_semverlite.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
