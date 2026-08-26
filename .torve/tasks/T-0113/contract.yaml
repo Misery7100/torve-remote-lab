@@ -9,14 +9,15 @@ intent: >-
   (n-1 is zero) and returns 0.0 for population variance. Use the
   two-pass mean-then-squared-deviations formulation for numerical
   sanity, never the naive sum-of-squares shortcut. The input is never
-  mutated. Add unittest coverage in a new file
-  tests/test_variance.py — both modes on known data, the
-  single-element split, empty input, float results, and input
-  immutability. Existing functions stay untouched.
+  mutated. Add unittest coverage — in a new tests/test_variance.py or
+  in the existing tests/test_stats.py, either is fine — covering both
+  modes on known data, the single-element split, empty input, float
+  results, and input immutability. Existing functions stay untouched.
 scope:
   allow:
     - "src/lab/stats.py"
     - "tests/test_variance.py"
+    - "tests/test_stats.py"
   deny: []
 acceptance:
   - python3 -m unittest discover -s tests -v
