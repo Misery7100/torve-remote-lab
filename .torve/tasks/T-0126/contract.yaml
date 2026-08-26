@@ -1,0 +1,28 @@
+schema_version: 1
+id: T-0126
+role: implement
+intent: >-
+  Create a new module src/lab/slug.py with slugify(text, max_len=64)
+  -> str: lowercase the input, map the latin-1 accented letters
+  (àáâãäå æ ç èéêë ìíîï ñ òóôõö ø ùúûü ý and ß) to their ASCII
+  equivalents (ae for æ, ss for ß, o for ø), replace every run of
+  characters outside [a-z0-9] with a single '-', and strip leading
+  and trailing '-'. If the result exceeds max_len, cut at the last
+  '-' at or before max_len so no word is split; when the first word
+  itself is longer than max_len, hard-cut it at max_len. max_len < 1
+  raises ValueError. An input that reduces to nothing (empty, or all
+  punctuation) returns the empty string. The function is idempotent:
+  slugify(slugify(x)) == slugify(x) for any max_len held fixed. Add
+  unittest coverage in a new file tests/test_slug.py — accent
+  folding, run collapsing, trimming, both truncation modes, the
+  empty reduction, max_len validation, and idempotence. Do not
+  modify any existing file.
+scope:
+  allow:
+    - "src/lab/slug.py"
+    - "tests/test_slug.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

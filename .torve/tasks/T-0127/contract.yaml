@@ -1,0 +1,28 @@
+schema_version: 1
+id: T-0127
+role: implement
+intent: >-
+  Create a new module src/lab/bitset.py with a class BitSet over
+  non-negative integers, backed by a single Python int bitmask (no
+  set, dict, or list of members may be stored). Constructor takes an
+  optional iterable of ints. Methods: add(n), discard(n) (silent when
+  absent), __contains__, __len__ (popcount), __iter__ (ascending
+  order), __eq__ against other BitSets, union(other) and
+  intersection(other) returning new BitSets, and clear(). Any
+  negative or non-int argument raises ValueError, including inside
+  the constructor iterable — bool counts as non-int here. repr reads
+  "BitSet([1, 5, 9])" with members ascending. An empty BitSet is
+  falsy, a non-empty one truthy. Add unittest coverage in a new file
+  tests/test_bitset.py — dedup on construction, ascending iteration,
+  popcount len, union and intersection leaving the operands
+  untouched, discard of an absent member, the bool-rejection rule,
+  equality, truthiness, and repr. Do not modify any existing file.
+scope:
+  allow:
+    - "src/lab/bitset.py"
+    - "tests/test_bitset.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

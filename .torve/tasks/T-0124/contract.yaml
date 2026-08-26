@@ -1,0 +1,29 @@
+schema_version: 1
+id: T-0124
+role: implement
+intent: >-
+  Create a new module src/lab/duration.py with parse_duration(text)
+  -> int seconds and format_duration(seconds) -> str for compact
+  duration strings using units d, h, m, s (e.g. "1d2h3m4s", "90m",
+  "45s"). Parsing: one or more value-unit pairs, values are
+  non-negative integers, units must appear in strictly descending
+  order (d > h > m > s) and at most once each — "1m1h", "2h2h" and an
+  empty string raise ValueError, as does any unknown unit or a
+  trailing number without a unit. Values need not be normalized on
+  input ("90m" is legal, 5400). An optional single leading '-'
+  negates the whole duration. format_duration is canonical: largest
+  units first, zero components omitted, "0s" for zero, a leading '-'
+  for negatives; round-trip holds: parse_duration(format_duration(n))
+  == n for every int n. Add unittest coverage in a new file
+  tests/test_duration.py — unit order and repetition errors,
+  non-normalized input, negatives, zero, round-trips, and malformed
+  text. Do not modify any existing file.
+scope:
+  allow:
+    - "src/lab/duration.py"
+    - "tests/test_duration.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

@@ -1,0 +1,28 @@
+schema_version: 1
+id: T-0125
+role: implement
+intent: >-
+  Create a new module src/lab/topo.py with topo_sort(deps) ->
+  list[str] where deps maps a node name to the list of nodes it
+  depends on. The result orders dependencies before dependents and is
+  deterministic: among nodes whose dependencies are all satisfied,
+  the lexicographically smallest is emitted first (Kahn's algorithm
+  with a sorted frontier). Nodes that appear only as dependencies
+  (never as keys) are included and treated as having no dependencies.
+  A cycle raises CycleError (a ValueError subclass defined in the
+  module) whose message contains one concrete cycle rendered as
+  "a -> b -> a"; a self-dependency is a cycle of length one.
+  Duplicate entries in a dependency list are tolerated and count
+  once. Add unittest coverage in a new file tests/test_topo.py —
+  deterministic tie-breaking, implicit nodes, the empty mapping,
+  duplicates, a self-loop, and a longer cycle whose message is
+  checked. Do not modify any existing file.
+scope:
+  allow:
+    - "src/lab/topo.py"
+    - "tests/test_topo.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

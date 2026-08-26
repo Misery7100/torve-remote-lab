@@ -1,0 +1,29 @@
+schema_version: 1
+id: T-0128
+role: implement
+intent: >-
+  Create a new module src/lab/cronlite.py with next_run(minute_spec,
+  hour_spec, after) -> tuple[int, int] computing the next (hour,
+  minute) strictly after the given after=(hour, minute) at which a
+  cron-like schedule fires, wrapping to the next day when needed.
+  Each spec is a string: "*" (every value), "*/n" (every n-th value
+  counted from 0), "a-b" (inclusive range, a <= b required), or a
+  comma list of plain values ("5,20,35"). Minutes live in 0-59,
+  hours in 0-23; any out-of-range value, empty field, zero step, or
+  malformed spec raises ValueError. The match rule is standard cron:
+  a time fires when its minute matches minute_spec AND its hour
+  matches hour_spec. next_run is strict — if after itself fires, the
+  answer is still the next firing after it. Add unittest coverage in
+  a new file tests/test_cronlite.py — steps from zero, ranges, comma
+  lists, the strictly-after rule, same-hour and next-hour rollover,
+  wrap past midnight, and each validation error. Do not modify any
+  existing file.
+scope:
+  allow:
+    - "src/lab/cronlite.py"
+    - "tests/test_cronlite.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
