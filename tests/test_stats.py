@@ -32,21 +32,23 @@ class VarianceTest(unittest.TestCase):
     def test_empty_raises_valueerror(self):
         with self.assertRaises(ValueError):
             variance([])
+        with self.assertRaises(ValueError):
+            variance([], sample=False)
 
-    def test_single_element(self):
-        self.assertEqual(variance([5]), 0)
+    def test_single_element_population(self):
+        self.assertEqual(variance([5], sample=False), 0)
 
     def test_identical_values(self):
-        self.assertEqual(variance([3, 3, 3, 3]), 0)
+        self.assertEqual(variance([3, 3, 3, 3], sample=False), 0)
 
     def test_two_elements(self):
-        self.assertEqual(variance([2, 4]), 1)
+        self.assertEqual(variance([2, 4], sample=False), 1)
 
     def test_known_population(self):
-        self.assertEqual(variance([1, 2, 3, 4, 5]), 2)
+        self.assertEqual(variance([1, 2, 3, 4, 5], sample=False), 2)
 
     def test_negative_and_positive(self):
-        self.assertEqual(variance([-2, 2]), 4)
+        self.assertEqual(variance([-2, 2], sample=False), 4)
 
 
 class ModeTest(unittest.TestCase):

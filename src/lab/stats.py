@@ -8,11 +8,25 @@ def median(numbers: list) -> float:
     return statistics.median(numbers)
 
 
-def variance(numbers: list) -> float:
-    """Return the population variance of a non-empty list."""
+def variance(numbers: list, sample: bool = True) -> float:
+    """Return the sample (n-1) or population (n) variance of a sequence.
+
+    Uses the two-pass mean-then-squared-deviations formulation. The input is
+    not mutated. An empty sequence raises for either mode; a single-element
+    sequence raises for sample variance and returns 0.0 for population.
+    """
     if not numbers:
         raise ValueError("variance() requires a non-empty list")
-    return statistics.pvariance(numbers)
+    length = len(numbers)
+    if sample and length < 2:
+        raise ValueError("sample variance requires at least two elements")
+    mean = sum(numbers) / length
+    total = 0.0
+    for number in numbers:
+        total += (number - mean) ** 2
+    if sample:
+        return total / (length - 1)
+    return total / length
 
 
 def mode(numbers: list):
