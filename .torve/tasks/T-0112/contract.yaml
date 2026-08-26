@@ -1,0 +1,25 @@
+schema_version: 1
+id: T-0112
+role: implement
+intent: >-
+  Add a percentile(numbers, p) function to src/lab/stats.py returning
+  the p-th percentile (0 <= p <= 100) of a non-empty sequence using
+  linear interpolation between closest ranks (the numpy 'linear'
+  method): sort the values, compute rank = p/100 * (n-1), and
+  interpolate between the floor and ceiling neighbours. p outside
+  [0, 100] or an empty sequence raises ValueError; p=0 is the
+  minimum, p=100 the maximum, and a single-element sequence returns
+  that element for every p. The input is never mutated. Add unittest
+  coverage in a new file tests/test_percentile.py — interpolated
+  midpoints, the endpoints, single element, unsorted input, input
+  immutability, and both error cases. Existing functions stay
+  untouched.
+scope:
+  allow:
+    - "src/lab/stats.py"
+    - "tests/test_percentile.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

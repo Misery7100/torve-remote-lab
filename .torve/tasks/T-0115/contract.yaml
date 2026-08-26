@@ -1,0 +1,29 @@
+schema_version: 1
+id: T-0115
+role: implement
+intent: >-
+  Create a new module src/lab/isodate.py with iso_week(year, month,
+  day) -> (iso_year, iso_week, iso_weekday) implementing the ISO 8601
+  week date: weeks start on Monday (weekday 1) and week 1 is the week
+  containing the year's first Thursday, so early January days can
+  belong to the previous ISO year and late December days to the next.
+  Also day_of_year(year, month, day) -> int with correct Gregorian
+  leap handling (divisible by 4, except centuries unless divisible by
+  400). Both validate their input (month 1-12, day legal for the
+  month and year) and raise ValueError otherwise. Implement the
+  calendar arithmetic directly — the datetime module may be used only
+  inside the test file as the oracle, never in src/lab/isodate.py.
+  Add unittest coverage in a new file tests/test_isodate.py — the
+  classic boundaries (2016-01-01 is ISO 2015-W53-5, 2021-01-01 is ISO
+  2020-W53-5, 2018-12-31 is ISO 2019-W01-1), leap centuries (1900 is
+  not a leap year, 2000 is), a datetime-oracle sweep over several
+  years, and validation cases. Do not modify any existing file.
+scope:
+  allow:
+    - "src/lab/isodate.py"
+    - "tests/test_isodate.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

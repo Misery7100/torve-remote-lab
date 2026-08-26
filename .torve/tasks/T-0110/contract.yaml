@@ -1,0 +1,22 @@
+schema_version: 1
+id: T-0110
+role: implement
+intent: >-
+  Add a levenshtein(a, b) function to src/lab/__init__.py computing
+  the Levenshtein edit distance between two strings with insertions,
+  deletions, and substitutions all costing 1, implemented iteratively
+  with O(min(len(a), len(b))) additional space — no recursion. Empty
+  strings are legal (distance is the other's length); the function is
+  symmetric. Add unittest coverage in a new file
+  tests/test_levenshtein.py — empty cases, symmetry, known distances
+  (kitten/sitting is 3), transposition costing 2 (this is not
+  Damerau), and unicode strings. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/lab/__init__.py"
+    - "tests/test_levenshtein.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

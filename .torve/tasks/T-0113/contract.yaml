@@ -1,0 +1,24 @@
+schema_version: 1
+id: T-0113
+role: implement
+intent: >-
+  Add a variance(numbers, sample=True) function to src/lab/stats.py:
+  sample variance divides by n-1, population variance (sample=False)
+  by n. An empty sequence raises ValueError for either mode; a
+  single-element sequence raises ValueError for sample variance
+  (n-1 is zero) and returns 0.0 for population variance. Use the
+  two-pass mean-then-squared-deviations formulation for numerical
+  sanity, never the naive sum-of-squares shortcut. The input is never
+  mutated. Add unittest coverage in a new file
+  tests/test_variance.py — both modes on known data, the
+  single-element split, empty input, float results, and input
+  immutability. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/lab/stats.py"
+    - "tests/test_variance.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

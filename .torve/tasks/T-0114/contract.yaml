@@ -1,0 +1,28 @@
+schema_version: 1
+id: T-0114
+role: implement
+intent: >-
+  Create a new module src/lab/urlq.py with parse_qs(query) ->
+  list[tuple[str, str]] and format_qs(pairs) -> str for URL query
+  strings, without urllib: pairs separated by '&', key and value by
+  the first '=' (a pair with no '=' has value ''; a pair with an
+  empty key is skipped), '+' decodes to space, and %XX
+  percent-escapes decode case-insensitively — a malformed escape
+  (truncated, or non-hex digits) raises ValueError. Order and
+  duplicate keys are preserved. format_qs is the exact inverse:
+  encodes space as '+', percent-encodes '&', '=', '%', '+', and every
+  byte outside printable ASCII as UTF-8 %XX pairs (uppercase hex),
+  and round-trips: parse_qs(format_qs(pairs)) == pairs. Add unittest
+  coverage in a new file tests/test_urlq.py — duplicates and order,
+  empty values, plus-vs-space, mixed-case escapes, UTF-8 round-trip,
+  malformed escapes, and the empty query. Do not modify any existing
+  file.
+scope:
+  allow:
+    - "src/lab/urlq.py"
+    - "tests/test_urlq.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

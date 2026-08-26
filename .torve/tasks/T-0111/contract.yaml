@@ -1,0 +1,23 @@
+schema_version: 1
+id: T-0111
+role: implement
+intent: >-
+  Add a wrap_text(text, width) function to src/lab/__init__.py
+  greedily wrapping text to lines of at most width characters,
+  breaking on single spaces, preserving no trailing spaces on any
+  line, splitting words longer than width across lines in width-sized
+  chunks, collapsing runs of spaces to one, and returning a list of
+  lines — an empty or all-space text returns an empty list; width < 1
+  raises ValueError. Implemented without the textwrap module. Add
+  unittest coverage in a new file tests/test_wrap_text.py — exact-fit
+  lines, the long-word split, space collapsing, empty input, and the
+  width validation. Existing functions stay untouched.
+scope:
+  allow:
+    - "src/lab/__init__.py"
+    - "tests/test_wrap_text.py"
+  deny: []
+acceptance:
+  - python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
