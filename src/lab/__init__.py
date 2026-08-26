@@ -291,3 +291,40 @@ def levenshtein(a: str, b: str) -> int:
             )
         previous = current
     return previous[-1]
+
+
+def wrap_text(text: str, width: int) -> list:
+    """Greedily wrap text to lines of at most width characters.
+
+    Words are split on runs of single spaces, which collapse to one; newlines
+    and tabs are not spaces and are kept as literal characters within words. No
+    line keeps a trailing space. A word longer than width is split across lines
+    in width-sized chunks. Empty or all-space text returns an empty list. Raises
+    ValueError when width < 1. Implemented without the textwrap module.
+    """
+    if width < 1:
+        raise ValueError("width must be positive")
+    words = [word for word in text.split(" ") if word != ""]
+    if not words:
+        return []
+    tokens = []
+    for word in words:
+        if len(word) > width:
+            tokens.extend(word[start:start + width] for start in range(0, len(word), width))
+        else:
+            tokens.append(word)
+    lines = []
+    current = []
+    current_len = 0
+    for token in tokens:
+        token_len = len(token)
+        if current_len + len(current) + token_len <= width:
+            current.append(token)
+            current_len += token_len
+        else:
+            lines.append(" ".join(current))
+            current = [token]
+            current_len = token_len
+    if current:
+        lines.append(" ".join(current))
+    return lines
