@@ -266,3 +266,28 @@ def collatz_steps(n: int) -> int:
             n = 3 * n + 1
         steps += 1
     return steps
+
+
+def levenshtein(a: str, b: str) -> int:
+    """Return the Levenshtein edit distance between two strings.
+
+    Insertions, deletions, and substitutions each cost 1. Implemented
+    iteratively using O(min(len(a), len(b))) additional space. The function
+    is symmetric and accepts empty strings (distance is the other's length).
+    """
+    if len(a) < len(b):
+        a, b = b, a
+    previous = list(range(len(b) + 1))
+    for i, ch_a in enumerate(a, 1):
+        current = [i]
+        for j in range(1, len(b) + 1):
+            cost = 0 if ch_a == b[j - 1] else 1
+            current.append(
+                min(
+                    current[-1] + 1,
+                    previous[j] + 1,
+                    previous[j - 1] + cost,
+                )
+            )
+        previous = current
+    return previous[-1]
