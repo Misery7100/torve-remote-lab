@@ -8,6 +8,7 @@ promotion:
   require_ci: true
   auto_merge: true           # the D-6.2 opt-in — the tick's lane leg runs here
   approvals: 1               # a landing needs one commander approval of the tip
+  require_review: true       # A-43 (D-6.14): the lane lands only a reviewed run
 loop:
   dispatch_workers: 2        # A-39: scope-disjoint tasks may share a tick;
                              # anything provably shared still serializes
