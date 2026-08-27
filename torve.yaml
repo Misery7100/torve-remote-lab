@@ -28,7 +28,15 @@ review:
     - "coderabbitai[bot]"
     - Misery7100
 tiers:
-  planner: {adapter: fake}
+  # The drafting run's seat (RFC 0020): same harness as the reviewer —
+  # the drafter writes contracts, the lint judges them.
+  planner:
+    adapter: harness
+    command: 'HOME=/tmp opencode run -m deepseek/{model} "$(cat {prompt})"'
+    model: deepseek-chat
+    provider: deepseek
+    api_key_env: [DEEPSEEK_API_KEY]
+    image: torve-agent:opencode
   executor:
     adapter: harness
     command: 'HOME=/tmp opencode run -m deepseek/{model} "$(cat {prompt})"'
