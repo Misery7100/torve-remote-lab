@@ -1,0 +1,22 @@
+# Adopted from T-0140's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0141
+role: implement
+intent: 'Add a new src/lab/textwrapx.py module implementing greedy word wrap to a
+  given maximum width plus full justification: wrap returns a list of strings (lines),
+  each at most width characters, hard-breaking any single word longer than width into
+  width-sized chunks; justify returns an equal-width block where the extra space is
+  distributed left-biased across the gaps (the first (gaps mod units) gaps get an
+  extra space and the last line is left-aligned/returned as-is). Both functions raise
+  ValueError when width < 1, and the module is written with stdlib only and a docstring
+  style matching the existing lab modules.'
+depends_on: []
+scope:
+  allow:
+  - src/lab/textwrapx.py
+  - tests/test_textwrapx.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

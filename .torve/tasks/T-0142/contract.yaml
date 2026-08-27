@@ -1,0 +1,21 @@
+# Adopted from T-0140's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0142
+role: implement
+intent: 'Add a new src/lab/checksum.py module implementing two digit-string checksum
+  algorithms: luhn_valid returns a bool for whether the card number passes the Luhn
+  checksum, and the Damm algorithm module provides compute_damm_check_digit (returns
+  the check digit to append) and damm_valid (verifies a full string with check digit).
+  All functions operate over digit strings, raise ValueError when any input character
+  is non-digit, and follow the stdlib-only, small-pure-function style used by existing
+  lab modules.'
+depends_on: []
+scope:
+  allow:
+  - src/lab/checksum.py
+  - tests/test_checksum.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
