@@ -1,0 +1,21 @@
+# Adopted from T-0134's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0135
+role: implement
+intent: 'Add rolling statistics to the existing statistics module src/lab/stats.py:
+  a rolling_median(values, window) that returns the median of each full window as
+  the window slides over the list, and rolling_max(values, window) with identical
+  windowing. Each returns len(values) - window + 1 results in input order, raises
+  ValueError when window is smaller than 1 or larger than the list, and medians of
+  even windows average the two middle values as a float. Cover the behavior with unit
+  tests in tests/test_stats.py, the module''s existing test file.'
+depends_on: []
+scope:
+  allow:
+  - src/lab/stats.py
+  - tests/test_stats.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
