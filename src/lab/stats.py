@@ -41,6 +41,33 @@ def mode(numbers: list):
     return max(counts, key=lambda n: (counts[n], -first[n]))
 
 
+def _validate_window(values, window):
+    """Validate the sliding-window arguments, returning the result count."""
+    if window < 1:
+        raise ValueError("window must be at least 1")
+    if window > len(values):
+        raise ValueError("window cannot be larger than the list")
+    return len(values) - window + 1
+
+
+def rolling_median(values, window):
+    """Return the median of each full window as it slides over the list."""
+    result_count = _validate_window(values, window)
+    return [
+        statistics.median(values[index : index + window])
+        for index in range(result_count)
+    ]
+
+
+def rolling_max(values, window):
+    """Return the maximum of each full window as it slides over the list."""
+    result_count = _validate_window(values, window)
+    return [
+        max(values[index : index + window])
+        for index in range(result_count)
+    ]
+
+
 def percentile(numbers, p):
     """Return the p-th percentile of a non-empty sequence.
 

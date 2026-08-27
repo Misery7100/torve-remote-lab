@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lab.stats import median, mode, variance
+from lab.stats import median, mode, rolling_max, rolling_median, variance
 
 
 class MedianTest(unittest.TestCase):
@@ -76,6 +76,59 @@ class ModeTest(unittest.TestCase):
 
     def test_strings(self):
         self.assertEqual(mode(["a", "b", "a"]), "a")
+
+
+class RollingMedianTest(unittest.TestCase):
+    def test_invalid_window_raises_valueerror(self):
+        with self.assertRaises(ValueError):
+            rolling_median([1, 2, 3], 0)
+        with self.assertRaises(ValueError):
+            rolling_median([1, 2, 3], -1)
+        with self.assertRaises(ValueError):
+            rolling_median([1, 2, 3], 4)
+
+    def test_window_equal_to_length(self):
+        self.assertEqual(rolling_median([1, 2, 3, 4, 5], 5), [3])
+
+    def test_window_one(self):
+        self.assertEqual(rolling_median([1, 2, 3], 1), [1, 2, 3])
+
+    def test_window_less_than_length(self):
+        self.assertEqual(rolling_median([3, 1, 2, 5, 4], 3), [2, 2, 4])
+
+    def test_even_window_averages_middle_values_as_float(self):
+        self.assertEqual(rolling_median([1, 2, 3, 4, 5, 6], 2), [1.5, 2.5, 3.5, 4.5, 5.5])
+
+    def test_result_count(self):
+        self.assertEqual(len(rolling_median([1, 2, 3, 4, 5], 2)), 4)
+
+    def test_floats(self):
+        self.assertEqual(rolling_median([1.5, 2.5, 3.5], 2), [2.0, 3.0])
+
+
+class RollingMaxTest(unittest.TestCase):
+    def test_invalid_window_raises_valueerror(self):
+        with self.assertRaises(ValueError):
+            rolling_max([1, 2, 3], 0)
+        with self.assertRaises(ValueError):
+            rolling_max([1, 2, 3], -2)
+        with self.assertRaises(ValueError):
+            rolling_max([1, 2, 3], 4)
+
+    def test_window_equal_to_length(self):
+        self.assertEqual(rolling_max([1, 5, 3, 2, 4], 5), [5])
+
+    def test_window_one(self):
+        self.assertEqual(rolling_max([1, 2, 3], 1), [1, 2, 3])
+
+    def test_window_less_than_length(self):
+        self.assertEqual(rolling_max([3, 1, 4, 1, 5], 3), [4, 4, 5])
+
+    def test_result_count(self):
+        self.assertEqual(len(rolling_max([1, 2, 3, 4, 5], 2)), 4)
+
+    def test_negative_numbers(self):
+        self.assertEqual(rolling_max([-3, -1, -2, -5], 2), [-1, -1, -2])
 
 
 if __name__ == "__main__":
