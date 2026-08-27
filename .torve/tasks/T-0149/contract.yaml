@@ -1,0 +1,20 @@
+# Adopted from T-0144's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0149
+role: implement
+intent: Add a new module src/lab/treefilter.py importing lab.pathspec and exposing
+  filter_paths(paths, allow, deny) that keeps a path when it matches any allow pattern
+  (empty allow list keeps everything) and no deny pattern, with deny winning over
+  allow and input order preserved, backed by unittest coverage in tests/test_treefilter.py
+  following the existing test conventions.
+depends_on:
+- T-0148
+scope:
+  allow:
+  - src/lab/treefilter.py
+  - tests/test_treefilter.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor

@@ -1,0 +1,21 @@
+# Adopted from T-0144's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0148
+role: implement
+intent: Add a new stdlib-only module src/lab/pathspec.py providing a gitwildmatch-style
+  matcher match(pattern, path) -> bool for forward-slash-separated relative paths,
+  supporting * within a segment, ? for one non-slash character, ** as a whole segment
+  matching any number of segments including zero, and character classes with ranges
+  and negation, raising ValueError on empty patterns and unterminated classes, with
+  matching unittest coverage in tests/test_pathspec.py following the existing test
+  conventions.
+depends_on: []
+scope:
+  allow:
+  - src/lab/pathspec.py
+  - tests/test_pathspec.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
