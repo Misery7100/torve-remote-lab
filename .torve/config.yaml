@@ -28,22 +28,26 @@ review:
     - "coderabbitai[bot]"
     - Misery7100
 tiers:
-  # The drafting run's seat (RFC 0020): same harness as the reviewer —
-  # the drafter writes contracts, the lint judges them.
+  # Drafter and executor run the native DeepSeek harness (dsh): the
+  # 2026-08-28 shadow campaign measured it 8/8 green at attempt 1 on the
+  # same model once the headless profile was configured — model overlay
+  # baked in the image, permission mode as the operator knob. The reviewer
+  # stays on opencode: a cross-harness pair on one model keeps review
+  # independent of the executor's harness quirks.
   planner:
     adapter: harness
-    command: 'HOME=/tmp opencode run -m deepseek/{model} "$(cat {prompt})"'
+    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access dsh --profile headless --patch /opt/dsh/deepseek-chat.yml "$(cat {prompt})"'
     model: deepseek-chat
     provider: deepseek
     api_key_env: [DEEPSEEK_API_KEY]
-    image: torve-agent:opencode
+    image: torve-agent:dsh
   executor:
     adapter: harness
-    command: 'HOME=/tmp opencode run -m deepseek/{model} "$(cat {prompt})"'
+    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access dsh --profile headless --patch /opt/dsh/deepseek-chat.yml "$(cat {prompt})"'
     model: deepseek-chat
     provider: deepseek
     api_key_env: [DEEPSEEK_API_KEY]
-    image: torve-agent:opencode
+    image: torve-agent:dsh
   reviewer:
     adapter: harness
     command: 'HOME=/tmp opencode run -m deepseek/{model} "$(cat {prompt})"'

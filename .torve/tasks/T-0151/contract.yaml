@@ -1,0 +1,11 @@
+# Minted by the runner at gated — review follows execution.
+id: T-0151
+role: review
+intent: Review T-0149's diff against its contract and inherited decisions.
+targets:
+- T-0149
+decisions: []
+budget:
+  iterations: 1
+tier: reviewer
+schema_version: 1

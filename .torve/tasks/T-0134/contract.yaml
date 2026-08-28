@@ -1,0 +1,14 @@
+# Minted by the engine at intake — drafting follows the request.
+id: T-0134
+role: draft
+intent: 'Add a rolling statistics module: a function rolling_median(values, window)
+  returning the median of each full window as it slides over the list (result length
+  len(values) - window + 1), and rolling_max(values, window) with the same windowing.
+  A window smaller than 1 or larger than the list raises ValueError. Medians of even
+  windows average the two middle values as a float. Cover edge cases with unittest
+  tests.'
+decisions: []
+budget:
+  iterations: 3
+tier: planner
+schema_version: 1

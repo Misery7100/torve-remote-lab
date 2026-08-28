@@ -1,0 +1,21 @@
+# Minted by the engine at intake — drafting follows the request.
+id: T-0144
+role: draft
+intent: "Add a path-matching capability to the lab package as two drafts where the\
+  \ second depends on the first. First draft: src/lab/pathspec.py \u2014 a gitwildmatch-style\
+  \ glob matcher over forward-slash-separated relative paths: match(pattern, path)\
+  \ -> bool supporting * (any run of characters within one segment, never crossing\
+  \ a slash), ? (one non-slash character), ** as a whole segment (any number of segments,\
+  \ including zero), and character classes [abc], ranges [a-z] and negation [!a-z];\
+  \ ValueError on an empty pattern or an unterminated class. Stdlib only; translating\
+  \ to a compiled re internally is fine. Second draft, depending on the first: src/lab/treefilter.py\
+  \ \u2014 filter_paths(paths, allow, deny) importing lab.pathspec: a path is kept\
+  \ when it matches any allow pattern (an empty allow list keeps everything) and matches\
+  \ no deny pattern \u2014 deny wins over allow; input order is preserved and each\
+  \ draft carries its own unittest test file following the existing tests/test_*.py\
+  \ conventions."
+decisions: []
+budget:
+  iterations: 3
+tier: planner
+schema_version: 1

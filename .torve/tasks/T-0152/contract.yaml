@@ -1,0 +1,16 @@
+# Minted by the engine at intake — drafting follows the request.
+id: T-0152
+role: draft
+intent: "Add an integer range-set module to the lab package\n\nAdd src/lab/rangeset.py\
+  \ \u2014 a sorted set of non-overlapping half-open integer ranges: add(start, stop)\
+  \ inserts a range and merges any overlapping or adjacent ranges; contains(n) answers\
+  \ membership; ranges() returns the normalized list of (start, stop) tuples in ascending\
+  \ order; total() returns the count of covered integers. Adding an empty or inverted\
+  \ range (stop <= start) raises ValueError. Stdlib only, small pure functions or\
+  \ one small class, with a unittest test file following the existing tests/test_*.py\
+  \ conventions."
+decisions: []
+budget:
+  iterations: 3
+tier: planner
+schema_version: 1

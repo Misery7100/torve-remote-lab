@@ -1,0 +1,16 @@
+# Minted by the engine at intake — drafting follows the request.
+id: T-0137
+role: draft
+intent: "Human-readable byte sizes\n\nWe keep printing raw byte counts in demos. I'd\
+  \ like a small utility that formats a non-negative byte count as a human-readable\
+  \ string using binary units (B, KiB, MiB, GiB, TiB) with one decimal place except\
+  \ for plain bytes ('512 B', '1.5 KiB', '2.0 MiB'), and a parser that inverts it\
+  \ \u2014 accepting the same unit spellings case-insensitively, with or without the\
+  \ space, and rejecting negatives, unknown units, and malformed numbers with ValueError.\
+  \ Round-tripping a formatted value should give back a count within rounding tolerance.\
+  \ Please include thorough unit tests."
+decisions: []
+budget:
+  iterations: 3
+tier: planner
+schema_version: 1

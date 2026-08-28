@@ -1,0 +1,20 @@
+# Minted by the engine at intake — drafting follows the request.
+id: T-0140
+role: draft
+intent: "Add three independent modules to the lab package, each with its own test\
+  \ file, as three separate parallel-safe drafts. First: textwrapx \u2014 greedy word\
+  \ wrap to a given width plus full justification (spaces distributed left-biased\
+  \ across gaps, last line left-aligned), refusing width < 1 with ValueError; words\
+  \ longer than the width are hard-broken. Second: checksum \u2014 Luhn card-number\
+  \ validity (bool) and the Damm algorithm (compute check digit and verify), both\
+  \ over digit strings, refusing non-digit input with ValueError. Third: humanize\
+  \ \u2014 a byte count to a human string using binary units (1536 -> 1.5 KiB, one\
+  \ decimal, trailing .0 dropped) and a seconds count to a compact duration string\
+  \ (3661 -> 1h 1m 1s, zero components omitted, 0 -> 0s), both refusing negatives\
+  \ with ValueError. Follow the existing module style: stdlib only, small pure functions,\
+  \ unittest tests mirroring tests/test_*.py conventions."
+decisions: []
+budget:
+  iterations: 3
+tier: planner
+schema_version: 1
