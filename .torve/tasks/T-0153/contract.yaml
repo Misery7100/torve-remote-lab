@@ -1,0 +1,22 @@
+# Adopted from T-0152's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0153
+role: implement
+intent: 'Add a new stdlib-only module src/lab/rangeset.py defining a RangeSet class:
+  a sorted set of non-overlapping half-open integer ranges. add(start, stop) inserts
+  a range, merging any overlapping or adjacent (stop==next.start) ranges; contains(n)
+  answers membership; ranges() returns the normalized ascending list of (start, stop)
+  tuples; total() returns the count of covered integers; empty or inverted input (stop
+  <= start) raises ValueError. Back it with a new unittest file tests/test_rangeset.py
+  following the existing tests/test_*.py conventions (sys.path bootstrap to ../src,
+  unittest import, classes per concern).'
+depends_on: []
+scope:
+  allow:
+  - src/lab/rangeset.py
+  - tests/test_rangeset.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
