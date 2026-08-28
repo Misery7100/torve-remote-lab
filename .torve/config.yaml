@@ -36,26 +36,47 @@ tiers:
   # independent of the executor's harness quirks.
   planner:
     adapter: harness
-    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access dsh --profile headless --patch /opt/dsh/deepseek-chat.yml "$(cat {prompt})"'
+    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token} dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"'
     model: deepseek-chat
     provider: deepseek
-    api_key_env: [DEEPSEEK_API_KEY]
     image: torve-agent:dsh
   executor:
     adapter: harness
-    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access dsh --profile headless --patch /opt/dsh/deepseek-chat.yml "$(cat {prompt})"'
+    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token} dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"'
     model: deepseek-chat
     provider: deepseek
-    api_key_env: [DEEPSEEK_API_KEY]
     image: torve-agent:dsh
   reviewer:
     adapter: harness
-    command: 'HOME=/tmp opencode run -m deepseek/{model} "$(cat {prompt})"'
+    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token} dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"'
     model: deepseek-chat
     provider: deepseek
-    api_key_env: [DEEPSEEK_API_KEY]
-    image: torve-agent:opencode
+    image: torve-agent:dsh
+    # The reviewer joined the brokered dsh seat: D-21.1 refuses a keyed
+    # tier while a broker is in force, so a mixed regime is illegal by
+    # design — custody for the standing loop outweighs the cross-harness
+    # pair, which shadow campaigns can still measure out-of-band.
 providers:
   default: [deepseek]
   repositories: {}
   never_send: []
+
+# Role-scoped skill sets (RFC 0009 D-9.1). The caveman-prose and
+# ponytail-lazy vendored skills carry the two harness plugins' content to
+# the non-claude harnesses; whether they earn their tokens is torve eval's
+# question, not an assumption.
+skills:
+  sets:
+    implement: [flag-dont-flip, caveman-prose, ponytail-lazy]
+    review: [flag-dont-flip, caveman-prose]
+
+# The egress broker (RFC 0021, D-21.1): the sandbox holds no provider key;
+# the broker injects at its own boundary, routes at the wire, and meters
+# every run. Landed T-0105/T-0106, adopted here 2026-08-28.
+broker:
+  adapter: local
+  mode: endpoint
+  providers:
+    deepseek:
+      upstream: https://api.deepseek.com
+      key_env: DEEPSEEK_API_KEY

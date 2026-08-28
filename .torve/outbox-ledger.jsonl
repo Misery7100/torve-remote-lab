@@ -810,3 +810,5 @@
 {"key": "shadow-T-0148:running:1:2", "at": "2026-08-28T13:35:29Z"}
 {"key": "shadow-T-0149:running:1:2", "at": "2026-08-28T13:35:35Z"}
 {"key": "shadow-T-0141:escalated:3:11", "at": "2026-08-28T14:10:51Z"}
+{"key": "shadow-T-0135:escalated:3:8", "at": "2026-08-28T19:29:45Z"}
+{"key": "shadow-T-0135:escalated:3:poison_ceiling", "at": "2026-08-28T19:29:55Z"}

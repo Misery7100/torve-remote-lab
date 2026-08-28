@@ -810,3 +810,5 @@
 {"key": "shadow-T-0148:running:1:2", "kind": "state", "payload": {"task": "shadow-T-0148", "state": "running", "title": "shadow-T-0148: task"}, "at": "2026-08-28T13:34:27Z"}
 {"key": "shadow-T-0149:running:1:2", "kind": "state", "payload": {"task": "shadow-T-0149", "state": "running", "title": "shadow-T-0149: task"}, "at": "2026-08-28T13:34:27Z"}
 {"key": "shadow-T-0141:escalated:3:11", "kind": "state", "payload": {"task": "shadow-T-0141", "state": "escalated", "title": "shadow-T-0141: task"}, "at": "2026-08-28T14:10:44Z"}
+{"key": "shadow-T-0135:escalated:3:8", "kind": "state", "payload": {"task": "shadow-T-0135", "state": "escalated", "title": "shadow-T-0135: task"}, "at": "2026-08-28T19:29:38Z"}
+{"key": "shadow-T-0135:escalated:3:poison_ceiling", "kind": "escalation", "payload": {"task": "shadow-T-0135", "title": "shadow-T-0135: task", "reason": "poison_ceiling", "detail": "3 attempts, ceiling 3"}, "at": "2026-08-28T19:29:38Z"}
