@@ -1,0 +1,26 @@
+# Adopted from T-0155's drafts (RFC 0020) — ids minted at adoption, D-20.4.
+schema_version: 1
+id: T-0156
+role: implement
+intent: 'Add a running-median tracker so callers can maintain the median of a live
+  numeric stream in O(log n) per insertion instead of recomputing from scratch. Consequently,
+  introduce src/lab/mediantracker.py defining a MedianTracker class backed by stdlib
+  heapq: add(x) inserts a value using a max-heap for the lower half and a min-heap
+  for the upper half, rebalanced so the halves differ in size by at most one; median()
+  returns the middle value (the mean of the two middle values when the count is even)
+  and raises ValueError when the tracker is empty; count() returns how many values
+  have been added. Add a matching unittest file tests/test_mediantracker.py following
+  the existing tests/test_*.py conventions (sys.path bootstrap to src, unittest.TestCase
+  classes, __main__ runner), covering odd counts, even counts, duplicates, negative
+  values, interleaved add/median calls, count() behavior, and the empty-tracker error.
+  Existing modules and tests stay untouched.'
+depends_on: []
+scope:
+  allow:
+  - src/lab/mediantracker.py
+  - tests/test_mediantracker.py
+  deny: []
+acceptance:
+- python3 -m unittest discover -s tests -v
+decisions: []
+tier: executor
