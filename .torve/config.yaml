@@ -57,8 +57,12 @@ tiers:
     # design — custody for the standing loop outweighs the cross-harness
     # pair, which shadow campaigns can still measure out-of-band.
 providers:
-  default: [deepseek]
-  repositories: {}
+  # Trust class `reviewed` (RFC 0024): the grant is per-repository and
+  # explicit, never a fleet-wide default.
+  default: []
+  repositories:
+    Misery7100/torve-remote-lab:
+      allow: [deepseek]
   never_send: []
 
 # Role-scoped skill sets (RFC 0009 D-9.1). The caveman-prose and
