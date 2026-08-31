@@ -36,19 +36,19 @@ tiers:
   # independent of the executor's harness quirks.
   planner:
     adapter: harness
-    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token} dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"'
+    command: 'export HOME=/tmp DSH_PERMISSION_MODE=danger-full-access DSH_PRICE_IN=0.27 DSH_PRICE_OUT=1.10 DSH_PRICE_CACHE=0.07 TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token}; dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"; node /opt/dsh/report-usage.js'
     model: deepseek-chat
     provider: deepseek
     image: torve-agent:dsh
   executor:
     adapter: harness
-    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token} dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"'
+    command: 'export HOME=/tmp DSH_PERMISSION_MODE=danger-full-access DSH_PRICE_IN=0.27 DSH_PRICE_OUT=1.10 DSH_PRICE_CACHE=0.07 TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token}; dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"; node /opt/dsh/report-usage.js'
     model: deepseek-chat
     provider: deepseek
     image: torve-agent:dsh
   reviewer:
     adapter: harness
-    command: 'HOME=/tmp DSH_PERMISSION_MODE=danger-full-access TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token} dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"'
+    command: 'export HOME=/tmp DSH_PERMISSION_MODE=danger-full-access DSH_PRICE_IN=0.27 DSH_PRICE_OUT=1.10 DSH_PRICE_CACHE=0.07 TORVE_BROKER_URL={broker_url} TORVE_BROKER_TOKEN={broker_token}; dsh --profile headless --patch /opt/dsh/brokered-deepseek.yml "$(cat {prompt})"; node /opt/dsh/report-usage.js'
     model: deepseek-chat
     provider: deepseek
     image: torve-agent:dsh
